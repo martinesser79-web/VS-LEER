@@ -1,0 +1,33 @@
+{
+  "statusbar_command.commands": [
+    {
+      "text": "$(extensions) Extensions off",
+      "command": "workbench.action.tasks.runTask",
+      "arguments": ["VS Code: Nur GitHub-Erweiterungen aktiv"],
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "Nur GitHub-Erweiterungen aktiv lassen"
+    },
+    {
+      "text": "$(pulse) Performance",
+      "command": "workbench.action.showRuntimeExtensions",
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "Zeigt Performance-Probleme"
+    },
+    {
+      "text": "$(folder) Projekte",
+      "command": "alefragnani.project-manager.listProjects",
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "Öffnet Project Manager"
+    },
+    {
+      "text": "$(gear) Settings",
+      "command": "workbench.action.openSettings",
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "Öffnet Einstellungen"
+    }
+  ]
+}
