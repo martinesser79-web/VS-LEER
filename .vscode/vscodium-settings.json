@@ -1,0 +1,24 @@
+{
+  "product.json.override": {
+    "extensionsGallery": {
+      "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+      "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+      "itemUrl": "https://marketplace.visualstudio.com/items"
+    }
+  },
+  "files.maxMemoryForLargeFilesMB": 4096,
+  "editor.maxTokenizationLineLength": 20000,
+  "http.timeout": 60000,
+  "[html]": {
+    "editor.foldingStrategy": "indentation",
+    "editor.suggest.showWords": false,
+    "editor.autoClosingTags": false
+  },
+  "html.suggest.html5": false,
+  "html.autoClosingTags": false,
+  "emmet.triggerExpansionOnTab": false,
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+  "telemetry.telemetryLevel": "off",
+  "workbench.enableExperiments": false
+}

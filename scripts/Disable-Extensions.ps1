@@ -1,5 +1,6 @@
-# Disables all VS Code extensions except the ones listed in $keep by moving them
-# into a backup folder. Run this script while VS Code is closed.
+# Auto-disables all VS Code extensions except the ones needed for productive work:
+# GitHub tools, status bar buttons, project/profile managers, and system monitors.
+# Run this script while VS Code is closed for best results.
 $extensionsDir = Join-Path $env:USERPROFILE '.vscode\extensions'
 $backupDir = "$extensionsDir.disabled"
 
@@ -13,13 +14,30 @@ if (-not (Test-Path $backupDir)) {
 }
 
 $keep = @(
+    # Core GitHub tools
     'github.copilot',
     'github.vscode-pull-request-github',
-    'github.copilot-chat'
+    # Status bar buttons so they remain visible
+    'anweber.statusbar-commands',
+    'seunlanlege.action-buttons',
+    # Project & extension management tools
+    'alefragnani.project-manager',
+    'evald24.vscode-extension-profiles',
+    # System monitoring for performance tracking
+    'aeschli.vscode-pulse-monitor',
+    'nexmoe.monitor-pro'
 )
 
 Get-ChildItem -Path $extensionsDir -Directory | ForEach-Object {
-    $extensionId = $_.Name.Split('-')[0]
+    # Extract extension ID (everything before the last dash-version pattern)
+    # Example: anweber.statusbar-commands-2.8.0 -> anweber.statusbar-commands
+    $fullName = $_.Name
+    if ($fullName -match '^(.+?)-(\d+\.\d+\.\d+.*)$') {
+        $extensionId = $matches[1]
+    } else {
+        $extensionId = $fullName
+    }
+    
     if ($keep -notcontains $extensionId.ToLower()) {
         $target = Join-Path $backupDir $_.Name
         Write-Host "Verschiebe $extensionId nach $target"

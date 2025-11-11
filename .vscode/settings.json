@@ -1,12 +1,23 @@
 {
+  "files.maxMemoryForLargeFilesMB": 4096,
+  "editor.maxTokenizationLineLength": 20000,
+  "http.timeout": 60000,
+  "[html]": {
+    "editor.foldingStrategy": "indentation",
+    "editor.suggest.showWords": false,
+    "editor.autoClosingTags": false
+  },
+  "html.suggest.html5": false,
+  "html.autoClosingTags": false,
+  "emmet.triggerExpansionOnTab": false,
   "statusbar_command.commands": [
     {
-      "text": "$(extensions) Extensions off",
+      "text": "$(extensions) Extensions auto",
       "command": "workbench.action.tasks.runTask",
       "arguments": ["VS Code: Nur GitHub-Erweiterungen aktiv"],
       "alignment": "right",
       "color": "#ff0000",
-      "tooltip": "Nur GitHub-Erweiterungen aktiv lassen"
+      "tooltip": "Auto: GitHub + benötigte Tools aktiv lassen"
     },
     {
       "text": "$(pulse) Performance",
@@ -17,10 +28,17 @@
     },
     {
       "text": "$(folder) Projekte",
-      "command": "alefragnani.project-manager.listProjects",
+      "command": "projectManager.listProjects",
       "alignment": "right",
       "color": "#ff0000",
-      "tooltip": "Öffnet Project Manager"
+      "tooltip": "Gespeicherte Projekte öffnen"
+    },
+    {
+      "text": "$(save) Projekt speichern",
+      "command": "projectManager.saveProject",
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "Aktuellen Ordner als Projekt speichern"
     },
     {
       "text": "$(gear) Settings",
@@ -28,6 +46,13 @@
       "alignment": "right",
       "color": "#ff0000",
       "tooltip": "Öffnet Einstellungen"
+    },
+    {
+      "text": "$(refresh) Reload",
+      "command": "workbench.action.reloadWindow",
+      "alignment": "right",
+      "color": "#ff0000",
+      "tooltip": "VS Code neu laden"
     }
   ]
 }

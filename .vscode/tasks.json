@@ -17,6 +17,23 @@
         "panel": "dedicated"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "VS Code: Buttons wiederherstellen",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}\\scripts\\Enable-Extensions.ps1"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
     }
   ]
 }
