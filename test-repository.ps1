@@ -76,7 +76,8 @@ foreach ($script in $scripts) {
         # Test syntax by parsing the script
         try {
             $errors = $null
-            $null = [System.Management.Automation.PSParser]::Tokenize((Get-Content $script -Raw), [ref]$errors)
+            $tokens = $null
+            $null = [System.Management.Automation.Language.Parser]::ParseInput((Get-Content $script -Raw), [ref]$tokens, [ref]$errors)
             if ($errors.Count -eq 0) {
                 Test-Result "$script has valid syntax" $true
             } else {
@@ -93,12 +94,20 @@ foreach ($script in $scripts) {
 # Test 5: Verify script functionality (basic checks)
 Write-Host "`nTesting script content..." -ForegroundColor Yellow
 
-$disableScript = Get-Content "scripts/Disable-Extensions.ps1" -Raw
-Test-Result "Disable-Extensions.ps1 contains keep list" ($disableScript -match '\$keep\s*=\s*@\(')
-Test-Result "Disable-Extensions.ps1 contains github.copilot" ($disableScript -match 'github\.copilot')
+if (Test-Path "scripts/Disable-Extensions.ps1") {
+    $disableScript = Get-Content "scripts/Disable-Extensions.ps1" -Raw
+    Test-Result "Disable-Extensions.ps1 contains keep list" ($disableScript -match '\$keep\s*=\s*@\(')
+    Test-Result "Disable-Extensions.ps1 contains github.copilot" ($disableScript -match 'github\.copilot')
+} else {
+    Test-Result "Disable-Extensions.ps1 content check" $false "File not found"
+}
 
-$enableScript = Get-Content "scripts/Enable-Extensions.ps1" -Raw
-Test-Result "Enable-Extensions.ps1 contains restore list" ($enableScript -match '\$restore\s*=\s*@\(')
+if (Test-Path "scripts/Enable-Extensions.ps1") {
+    $enableScript = Get-Content "scripts/Enable-Extensions.ps1" -Raw
+    Test-Result "Enable-Extensions.ps1 contains restore list" ($enableScript -match '\$restore\s*=\s*@\(')
+} else {
+    Test-Result "Enable-Extensions.ps1 content check" $false "File not found"
+}
 
 # Summary
 Write-Host ""
